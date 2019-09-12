@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="format-detection" content="telephone=no">
+        <meta charset="UTF-8">
+
+        <meta name="description" content="Violate Responsive Admin Template">
+        <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
+
+        <title>Super Admin Responsive Template</title>
+            
+        <!-- CSS -->
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+        <link th:href="@{/css/generics.css}" rel="stylesheet">
+    </head>
+    <body id="skin-blur-violate">
+        <section id="error-page" class="tile">
+            <h1 class="m-b-10">ERROR 403</h1>
+            <p>对不起，你没有权限访问此页面</p>
+            <a class="underline" href="javascript:history.go(-1)">上一页</a> &nbsp;&nbsp;或者&nbsp;&nbsp; <a class="underline" th:href="@{/index}">回到首页</a>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:replace="layout/default">
+
+<section th:fragment="content">
+
+
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
+
+    <h4 class="page-title b-0">List Views</h4>
+
+    <h2 class="page-title b-0"></h2>
+
+
+    <h3 data-sec-authorize="hasRole('ROLE_ADMIN')">
+        这部分内容当用户角色为为ADMIN时显示
+    </h3>
+    <p> 登录用户为：<span sec:authentication="name"></span></p>
+    Roles: <span sec:authentication="principal.authorities"></span>
+
+    <h6>hahha </h6>
+
+    <div th:text="${session.curMenu}">[...]</div>
+
+
+    <div></div>
+
+
+</section>
+<div th:fragment="js">
+</div>
+</html>

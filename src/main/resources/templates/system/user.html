@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:replace="layout/default">
+
+<section th:fragment="content">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
+
+    <h4 class="page-title">TABLES</h4>
+
+    <!-- Deafult Table -->
+    <div class="block-area" id="defaultStyle">
+        <div class="p-10">
+            <table class="table table-bordered table-hover tile" id="user_table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>真实姓名</th>
+                    <th>电话</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>真实姓名</th>
+                    <th>电话</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<div th:fragment="js">
+    <script th:src="@{/js/plugins/dataTables/datatables.min.js}"></script>
+    <script th:src="@{/js/system/user.js}"></script>
+</div>
+
+</html>
