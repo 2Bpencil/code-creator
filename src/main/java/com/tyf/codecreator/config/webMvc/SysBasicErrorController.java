@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @auther: tyf
+ * @author: tyf
  * @Date: 2019/7/11 19:41
  * @Description:自定义错误页面
  */

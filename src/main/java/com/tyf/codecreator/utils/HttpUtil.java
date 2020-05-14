@@ -1,6 +1,8 @@
 package com.tyf.codecreator.utils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @Auther: tyf
@@ -45,6 +47,33 @@ public class HttpUtil {
             return true;
         }
         return false;
+    }
+
+
+    public static void main(String[] args) {
+
+        String ip_str = "192.168.10.34 127.0.0.1 3.3.3.3 105.70.11.55";
+
+        // 为了让IP可以按字符串顺序比较，每一位需要0补充
+        ip_str = ip_str.replaceAll("(\\d+)", "00$1");
+        System.out.println(ip_str);
+
+        // 然后每一个保留3位
+        ip_str = ip_str.replaceAll("0*(\\d{3})", "$1");
+        System.out.println(ip_str);
+
+        // IP地址分割并排序
+        String[] ips = ip_str.split(" +");
+        Set<String> set = new TreeSet<String>();
+        for (String ip : ips) {
+            set.add(ip);
+        }
+
+        for (String ip : set) {
+            System.out.println(ip.replaceAll("0*(\\d+)", "$1"));
+        }
+
+
     }
 
 

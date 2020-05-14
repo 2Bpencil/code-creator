@@ -4,7 +4,6 @@
       th:replace="layout/default">
 
 <section th:fragment="content">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="#">Home</a></li>
@@ -14,31 +13,81 @@
 
     <h4 class="page-title">TABLES</h4>
 
-    <!-- Deafult Table -->
-    <div class="block-area" id="defaultStyle">
-        <div class="p-10">
-            <table class="table table-bordered table-hover tile" id="user_table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>用户名</th>
-                    <th>真实姓名</th>
-                    <th>电话</th>
-                    <th>性别</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>用户名</th>
-                    <th>真实姓名</th>
-                    <th>电话</th>
-                    <th>性别</th>
-                    <th>操作</th>
-                </tr>
-                </tfoot>
-            </table>
+    <div class="listview list-container">
+        <header class="listview-header media">
+            <ul class="list-inline pull-right m-t-5 m-b-0">
+                <li class="pagin-value hidden-xs">35-70</li>
+                <li>
+                    <a  href="" title="Previous" class="tooltips">
+                        <i class="sa-list-back"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Next" class="tooltips">
+                        <i class="sa-list-forwad"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="list-inline list-mass-actions pull-left">
+                <li>
+                    <a data-toggle="modal" href="#modalWider" title="Add" class="tooltips">
+                        <i class="sa-list-add"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Refresh" class="tooltips">
+                        <i class="sa-list-refresh"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </header>
+        <!-- Deafult Table -->
+        <div class="block-area" id="defaultStyle">
+            <div class="p-10">
+                <table class="table table-bordered table-hover tile" id="user_table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>真实姓名</th>
+                        <th>电话</th>
+                        <th>性别</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>真实姓名</th>
+                        <th>电话</th>
+                        <th>性别</th>
+                        <th>操作</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Wider -->
+    <div class="modal fade" id="modalWider" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm">Save changes</button>
+                    <button type="button" class="btn btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>

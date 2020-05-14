@@ -11,7 +11,7 @@ spring:
         driverClassName: com.mysql.cj.jdbc.Driver
         driver-class-name: com.mysql.cj.jdbc.Driver
         platform: mysql
-        url: jdbc:mysql://localhost:3306/admindb?serverTimezone=GMT&useUnicode=true&characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://localhost:3306/code-creator?serverTimezone=GMT&useUnicode=true&characterEncoding=utf-8&useSSL=false
         username: root
         password: root
         initialSize: 5
@@ -60,9 +60,9 @@ spring:
         force: true
         enabled: true
 #******************************************日志配置*****************************************
-#logging:
- # file: springboot.log
-  #level.root: info
+logging:
+  file: creator.log
+  level.root: info
 #  level.com.tyf.springbootdemo.config: info
 
 

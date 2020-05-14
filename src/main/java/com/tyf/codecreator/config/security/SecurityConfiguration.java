@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.thymeleaf.dialect.IDialect;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -79,7 +81,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-
     /**
      * 用于创建用户和角色
      * @param auth
@@ -141,6 +142,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
-
-
 }

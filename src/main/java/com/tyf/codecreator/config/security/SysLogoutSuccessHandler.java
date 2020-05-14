@@ -19,7 +19,6 @@ public class SysLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         try {
-
             logger.info("用户-"+ authentication.getName()+"-退出系统!");
         } catch (Exception e) {
             logger.error("用户-"+ authentication.getName()+"-退出系统失败!" + e.getMessage());

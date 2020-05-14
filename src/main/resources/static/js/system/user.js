@@ -3,7 +3,7 @@ var $table = "#user_table";
 $(document).ready(function() {
 
     initTable();
-
+    validateData();
 
 });
 
@@ -58,7 +58,6 @@ function initTable(){
                     buttons+='<button type="button" onclick="editUser('+data.id+')" class="btn btn-primary btn-xs" >编辑</button>&nbsp;&nbsp;';
                     buttons+='<button type="button" onclick="deleteUser('+data.id+')" class="btn btn-primary btn-xs" >删除</button>&nbsp;&nbsp;';
                     buttons+='<button type="button" onclick="assignmentRole('+data.id+')" class="btn btn-primary btn-xs" >分配角色</button>&nbsp;&nbsp;';
-                    buttons+='<button type="button" onclick="assignmentClass('+data.id+')" class="btn btn-primary btn-xs" >分配班级</button>&nbsp;&nbsp;';
                     buttons+='<button type="button" onclick="reSetPassword('+data.id+')" class="btn btn-primary btn-xs" >重置密码</button>';
                     return buttons;
                 }
@@ -90,9 +89,6 @@ function initTable(){
         //这里可以接管错误处理，也可以不做任何处理
     }).DataTable();
 }
-
-
-
 
 /*常量*/
 var CONSTANT = {
@@ -149,3 +145,64 @@ var CONSTANT = {
         }
     }
 };
+
+/**
+ * 验证数据
+ */
+function validateData(){
+    jQuery.validator.addMethod("cellPhone", function(value, element) {
+        return this.optional(element)
+            || /^1[0-9]\d{1}\d{4}\d{4}( x\d{1,6})?$/.test(value);
+    }, "联系方式无效");
+    userValidator= $("#userForm").validate({
+        rules: {
+            username: {
+                required: true,
+                maxlength: 50,
+                remote : {//远程地址只能输出"true"或"false"
+                    url : contextPath + "user/verifyTheRepeat",
+                    type : "POST",
+                    dataType : "json",//如果要在页面输出其它语句此处需要改为json
+                    beforeSend : function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    data : {
+                        id : function(){
+                            return $("#form_id").val();
+                        }
+                    }
+                },
+            },
+            phone: {
+                cellPhone : 'required'
+            },
+            sex:{
+                required: true,
+            },
+            realName:{
+                required: true,
+            }
+        },
+        messages : {
+            username : {
+                required : "不能为空",
+                maxlength : "不超过50个字符",
+                remote : "用户名已存在",
+            },
+            phone : {
+                required: "不能为空",
+                maxlength : "不超过50个字符",
+            },
+            sex:{
+                required: "请选择性别",
+            },
+            realName:{
+                required: "不能为空",
+            }
+        },
+        submitHandler : function(form) {
+            saveUser();
+
+        }
+    });
+}
