@@ -1,99 +1,119 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      th:replace="layout/default">
+      th:replace="default/layout">
 
-<section th:fragment="content">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb hidden-xs">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Library</a></li>
-        <li class="active">Data</li>
-    </ol>
+<body>
+<div class="row wrapper border-bottom white-bg page-heading" th:fragment="pageTitle">
+    <div class="col-sm-4">
 
-    <h4 class="page-title">TABLES</h4>
-
-    <div class="listview list-container">
-        <header class="listview-header media">
-            <ul class="list-inline pull-right m-t-5 m-b-0">
-                <li class="pagin-value hidden-xs">35-70</li>
-                <li>
-                    <a  href="" title="Previous" class="tooltips">
-                        <i class="sa-list-back"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="" title="Next" class="tooltips">
-                        <i class="sa-list-forwad"></i>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="list-inline list-mass-actions pull-left">
-                <li>
-                    <a data-toggle="modal" href="#modalWider" title="Add" class="tooltips">
-                        <i class="sa-list-add"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="" title="Refresh" class="tooltips">
-                        <i class="sa-list-refresh"></i>
-                    </a>
-                </li>
-            </ul>
-
-            <div class="clearfix"></div>
-        </header>
-        <!-- Deafult Table -->
-        <div class="block-area" id="defaultStyle">
-            <div class="p-10">
-                <table class="table table-bordered table-hover tile" id="user_table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>用户名</th>
-                        <th>真实姓名</th>
-                        <th>电话</th>
-                        <th>性别</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>用户名</th>
-                        <th>真实姓名</th>
-                        <th>电话</th>
-                        <th>性别</th>
-                        <th>操作</th>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
+        <h2>用户管理</h2>
+    </div>
+    <div class="col-sm-8">
+        <!--页面按钮-->
+        <div class="title-action">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#userModal">新增用户</a>
+            <a href="#" class="btn btn-primary" onclick="reloadTable()">刷新</a>
         </div>
     </div>
-    <!-- Modal Wider -->
-    <div class="modal fade" id="modalWider" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Modal title</h4>
+</div>
+<!--页面内容-->
+<div class="wrapper wrapper-content animated fadeInRight" th:fragment="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>用户列表</h5>
+                    <div class="ibox-tools">
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm">Save changes</button>
-                    <button type="button" class="btn btn-sm" data-dismiss="modal">Close</button>
+                <div class="ibox-content">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example"  id="user_table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>电话</th>
+                                <th>性别</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>电话</th>
+                                <th>性别</th>
+                                <th>操作</th>
+                            </tfoot>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</section>
-<div th:fragment="js">
-    <script th:src="@{/js/plugins/dataTables/datatables.min.js}"></script>
+</div>
+<div  th:fragment="jsDiv">
     <script th:src="@{/js/system/user.js}"></script>
 </div>
+<div  th:fragment="modal">
+    <div class="modal inmodal" id="userModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"  onclick="clearForm();"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-user modal-icon"></i>
+                    <h4 class="modal-title">用户表单</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="userForm">
+                        <input type="hidden" id="form_id" name="id">
+                        <div class="form-group"><label>用户名</label> <input type="text" id="form_username"  placeholder="请填写用户名" class="form-control" name="username"></div>
+                        <div class="form-group"><label>联系电话</label> <input type="text" id="form_phone"  placeholder="请填写联系电话" class="form-control" name="phone"></div>
+                        <div class="form-group"><label>性别</label>
+                            <select class="form-control m-b"id="form_sex"  name="sex">
+                                <option value="">请选择性别</option>
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal" onclick="clearForm();">关闭</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal" id="roleModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="clearForm();"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-bars modal-icon"></i>
+                    <h4 class="modal-title">角色分配</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="ztreeForm">
+                        <div class="form-group"><label>角色树</label><ul id="roleGroup" class="ztree"></ul> </div>
+
+                        <div class="form-group"><label></label>  <a onclick="checkAll('y')" class="selBtn"> <input type="checkbox" id="check1"> 全选  </a><a onclick="checkAll('n')" class="selBtn"> <input type="checkbox" id="check2"> 取消全选 </a></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal" onclick="clearForm();">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="saveUserAndRole();">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
 
 </html>
